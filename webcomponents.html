@@ -205,7 +205,7 @@
    
       crearAncore.setAttribute("href", `./${el}.html`);
 
-      itemsMenu.forEach(function(item,i){
+      let links = itemsMenu.forEach(function(item,i){
         return itemsMenu[i] = item.replace(/ /g,'-').toLowerCase();
       });
      
