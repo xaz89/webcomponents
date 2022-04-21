@@ -122,7 +122,7 @@
     document.body.appendChild(template.content); */
 
 
-
+    /* Datos variables */
     let nombre = `Jazmin`;
     let itemsMenu = [
       "Mi Tarjeta",
@@ -139,17 +139,15 @@
       "Políticas del programa",
       "Políticas de Privacidad y Tratamiento de Datos",
       `Contáctenos`,
-      `Descargar APP
-        <img  onclick="location.href='./index.html';" src="./img/app/btn_appStore.svg" alt="" srcset="">
-        <img  onclick="location.href='./index.html';" src="./img/app/btn_gooPlay.svg" alt="" srcset="">`,
+      `Descargar APP`,
       
     ];
     
-
+      /* Template general */
     const template = document.createElement('template');
 
     template.innerHTML = `
-<header>
+    <header>
       <img src="./img/header-img.png" class="fondo" alt="" srcset="">
       <div class="container">
         <div class="row h-50 justify-content-between align-items-center">
@@ -186,10 +184,8 @@
     <footer>
     <img src="./img/footer-img.png"  class="fondo" alt="" srcset="">
     <nav id="footer-nav">
-     
-     
-        
-     
+      <img onclick="location.href='./index.html';" src="./img/app/btn_appStore.svg" alt="" srcset="">
+      <img onclick="location.href='./index.html';" src="./img/app/btn_gooPlay.svg" alt="" srcset="">
     </nav>
   </footer>
 `;
@@ -198,35 +194,33 @@
 
     
       
+/* Crea ancore con el texto del arrelgo menú,
+ese mismo texto lo convierte en liga (minúsculas yreemplaza espacios por -),
+agrega atributo href y target,
+agrega href, target */
 
     itemsMenu.forEach(function (el, index) {
       let crearAncore = document.createElement("a");
-      
-   
-      crearAncore.setAttribute("href", `./${el}.html`);
-
-      let links = itemsMenu.forEach(function(item,i){
-        return itemsMenu[i] = item.replace(/ /g,'-').toLowerCase();
-      });
-     
+      let links =  itemsMenu[index] = el.replace(/ /g,'-').toLowerCase();
       crearAncore.innerHTML = `${el}`;
+      crearAncore.setAttribute("href", `./${links}.html`);
+      crearAncore.setAttribute("target", "_self")
       document.getElementById("primary-nav").appendChild(crearAncore);
-
-    
-
-
     });
 
 
-     
+    function eliminarDiacriticos(texto) {
+    return texto.normalize('NFD').replace(/[\u0300-\u036f]/g,"");
+}
 
     itemsFooter.forEach(function (el, index) {
       let crearAncore = document.createElement("a");
-      crearAncore.setAttribute("href", index);
+      let links =  itemsFooter[index] = el.replace(/ /g,'-').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,"");
+      crearAncore.setAttribute("href", `./${links}.html`);
+     
       crearAncore.innerHTML = `${el}`;
       document.getElementById("footer-nav").appendChild(crearAncore);
     });
-
 
     // Para cambiar letras el array
     // let resultado = nombres.map(e=> e.replace(/o/g, '0').replace(/i/g,1));
